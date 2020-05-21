@@ -9,10 +9,57 @@
     <link rel="stylesheet" href="css/amazeui.min.css"/>
     <!--<script src = "https://code.jquery.com/jquery-3.3.1.min.js"> </script>-->
     <script src = "js/jquery-1.7.2.min.js"> </script>
-    <!--js代码 要被执行 需要导入上面的库-->
+    <!--js代码 要被执行 需要导入上面的库  $:JQuery -->
     <script>
         //进入此页面 该函数立即执行
-        
+        $( function() {
+            $.ajax({
+                url: "goods",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var s = "";
+                    for (var i = 0; i < data.length; i++) {
+                        s += "<tr>";
+                        s += "<td>" + data[i].id + "</td>";
+                        s += "<td>" + data[i].name + "</td>";
+                        s += "<td>" + data[i]["introduce"] + "</td>";
+                        s += "<td>" + data[i].stock + "</td>";
+                        s += "<td>" + data[i].unit + "</td>";
+                        s += "<td>" + data[i].price + "</td>";
+                        s += "<td>" + data[i].discount + "</td>";
+                        s+="<td class=\"delete\"><button onclick=\"deleteInfo('"+ data[i].id + "')\" >" +
+                            "<i class=\"icon-trash bigger-120\"></i>下架</button></td>";
+                        s += "</tr>";
+                    }
+                    //console.log(s);  s当中 存放的是  当前所有行的内容
+                    $("#tbRecord>tbody").html(s);
+                    //("#表格id>标签下")
+                }
+            })
+        });
+        function deleteInfo(obj) {
+            console.log(obj);
+            if (obj != null) {
+                $.ajax({
+                    url:"delGoods",
+                    type: "post",
+                    //设置需要请求的参数类型  发送给后端
+                    data: {"id": obj},
+                    success: function () {
+                        alert("删除成功！");
+                        // 删除成功后刷新页面
+                        window.location.reload();
+                    },
+                    error: function () {
+                        alert("请求失败");
+                    },
+                    dataType: "text"
+                });
+            }
+        }
+
     </script>
 
 </head>
@@ -45,6 +92,7 @@
                                     <th>下架商品</th>
                                 </tr>
                                 </thead>
+
                                 <tbody>
 
                                 </tbody>

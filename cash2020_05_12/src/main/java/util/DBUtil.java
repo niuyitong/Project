@@ -1,31 +1,63 @@
 package util;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-//连接数据库
+
 public class DBUtil {
-    private static final String URL = "";
-    private static final String USERNAME = "";
-    private static final String PASSWORD = "";
 
-    private static volatile DataSource dataSource;
+    private static final String URL = "jdbc:mysql://localhost:3306/cash?useSSL=false";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "hehehahaaa";
 
-    static {
-        MysqlDataSource mysqlDataSource = new MysqlDataSource();
-        mysqlDataSource.setServerName("127.0.0.1");
-        mysqlDataSource.setPort(3306);
-        mysqlDataSource.setUser("root");
-        mysqlDataSource.setPassword("");
-        mysqlDataSource.setDatabaseName("cash");
-        mysqlDataSource.setUseSSL(false);
-        mysqlDataSource.setCharacterEncoding("utf8");
+    private static volatile DataSource DATASOURCE;
 
-        dataSource = mysqlDataSource;
+    //数据库连接池
+    private static DataSource getDATASOURCE() {
+        if(DATASOURCE == null) {
+            synchronized (DBUtil.class) {
+                if (DATASOURCE == null) {
+                    DATASOURCE = new MysqlDataSource();
+                    ((MysqlDataSource)DATASOURCE).setUrl(URL);
+                    ((MysqlDataSource)DATASOURCE).setUser(USERNAME);
+                    ((MysqlDataSource)DATASOURCE).setPassword(PASSWORD);
+                }
+            }
+        }
+        return DATASOURCE;
     }
 
-    public static Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+    public static Connection getConnection( boolean autocommit) {
+        try {
+            Connection connection = getDATASOURCE().getConnection();
+            connection.setAutoCommit(autocommit);//会讲到
+            return connection;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
+        try {
+            if(rs != null) {
+                rs.close();
+            }
+            if(ps != null) {
+                ps.close();
+            }
+            if(con != null) {
+                con.close();
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
