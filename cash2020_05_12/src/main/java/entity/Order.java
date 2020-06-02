@@ -5,6 +5,13 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created with IntelliJ IDEA.
+ * Description:
+ * User: GAOBO
+ * Date: 2020-05-17
+ * Time: 9:24
+ */
 @Data
 public class Order {
     private String id;

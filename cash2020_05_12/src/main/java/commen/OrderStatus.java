@@ -4,7 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
+/**
+ * Created with IntelliJ IDEA.
+ * Description:
+ * User: GAOBO
+ * Date: 2020-05-17
+ * Time: 9:25
+ */
 @Getter
 @ToString
 

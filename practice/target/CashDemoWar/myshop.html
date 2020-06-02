@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet"/>
+    <link rel="stylesheet" href="css/Site.css"/>
+    <link rel="stylesheet" href="css/zy.all.css"/>
+    <link rel="stylesheet" href="css/amazeui.min.css"/>
+    <!--<script src = "https://code.jquery.com/jquery-3.3.1.min.js"> </script>-->
+    <script src = "js/jquery-1.7.2.min.js"> </script>
+    <!--js代码 要被执行 需要导入上面的库  $:JQuery -->
+    <script>
+        //进入此页面 该函数立即执行
+        $( function() {
+            $.ajax({
+                url: "shop",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var s = "";
+                    for (var i = 0; i < data.length; i++) {
+                        s += "<tr>";
+                        s += "<td>" + data[i].id + "</td>";
+                        s += "<td>" + data[i].name + "</td>";
+                        s += "<td>" + data[i]["introduce"] + "</td>";
+                        s += "<td>" + data[i].buyGoodsNum + "</td>";
+                        s += "<td>" + data[i].unit + "</td>";
+                        s += "<td>" + data[i].price + "</td>";
+                        s += "<td>" + data[i].discount + "</td>";
+
+                        s += "</tr>";
+                    }
+                    //console.log(s);  s当中 存放的是  当前所有行的内容
+                    $("#tbRecord>tbody").html(s);
+                    //("#表格id>标签下")
+                }
+            })
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="dvcontent">
+    <div>
+        <!--tab start-->
+        <div class="tabs" style="height: 500px; overflow:scroll">
+            <div class="hd">
+                <ul>
+                    <li class="on" style="box-sizing: initial;-webkit-box-sizing: initial;">浏览商品</li>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul style="display: block;padding: 20px;">
+                    <li>
+                        <!--分页显示角色信息 start-->
+                        <div id="dv1">
+                            <!-- 规定元素的类名（classname）  规定元素的唯一 id-->
+                            <table class="table" id="tbRecord">
+                                <thead><!--<thead> 标签定义表格的表头。该标签用于组合 HTML 表格的表头内容。-->
+                                <tr><!--tr 元素包含一个或多个 th 或 td 元素。-->
+                                    <th>编号</th><!--表头单元格 - 包含表头信息-->
+                                    <th>商品名称</th>
+                                    <th>商品介绍</th>
+                                    <th>购买数量</th>
+                                    <th>商品单位</th>
+                                    <th>商品价格(元)</th>
+                                    <th>商品折扣</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!--分页显示角色信息 end-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="delete">
+    <form action="payfor" method="post">
+        <button type="submit" class="icon-trash bigger-120 delete" style="font-size:20px; color: rgba(12,16,12,0.86); background-color: rgba(55,188,255,0.96)"
+   >去支付</button>
+        <a href="index.html" class="icon-trash bigger-120 delete" style="font-size:20px; color: rgba(12,16,12,0.86);background-color: rgba(55,188,255,0.96)">取消</a>
+    </form>
+
+
+</div>
+</body>
+</html>

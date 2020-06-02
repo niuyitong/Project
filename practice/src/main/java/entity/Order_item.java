@@ -2,6 +2,7 @@ package entity;
 
 import lombok.Data;
 
+//浏览订单时用的
 @Data
 public class Order_item {
     private Integer id;

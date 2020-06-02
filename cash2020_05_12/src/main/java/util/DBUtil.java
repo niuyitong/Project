@@ -8,11 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Created with IntelliJ IDEA.
+ * Description: 链接数据库
+ * User: GAOBO
+ * Date: 2020-05-12
+ * Time: 21:32
+ */
 public class DBUtil {
 
     private static final String URL = "jdbc:mysql://localhost:3306/cash?useSSL=false";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "hehehahaaa";
+    private static final String PASSWORD = "111111";
 
     private static volatile DataSource DATASOURCE;
 
@@ -43,19 +50,19 @@ public class DBUtil {
     }
 
     public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
-        try {
-            if(rs != null) {
-                rs.close();
-            }
-            if(ps != null) {
-                ps.close();
-            }
-            if(con != null) {
-                con.close();
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
+       try {
+           if(rs != null) {
+               rs.close();
+           }
+           if(ps != null) {
+               ps.close();
+           }
+           if(con != null) {
+               con.close();
+           }
+       }catch (SQLException e) {
+           e.printStackTrace();
+       }
     }
 
 
