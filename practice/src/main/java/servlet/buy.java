@@ -36,7 +36,7 @@ public class buy {
                 int num = good.getStock();
                 if(num<Integer.valueOf(goods[1])){
                     writer.write("<p>存货不足，购买失败</p>");
-                    writer.write("<a href=\"index.html\">点击回到主界面</a>");
+                    writer.write("<a href=\"mainPage.html\">点击回到主界面</a>");
                     return;
                 }else{
                     good.setBuyGoodsNum(Integer.valueOf(goods[1]));
@@ -104,7 +104,7 @@ public class buy {
         //这个标签<a href = > 只会以get方式请求，所以buyGoodsServlet的 doGet方法
         resp.getWriter().println("<a href=\"buyGoodsServlet\">确认</a>");
         //resp.getWriter().println("<form action=\"buyGoodsServlet\" method=\"post\"><button type=\"submit\">确认</button></form>");
-        resp.getWriter().println("<a href= \"index.html\">取消</a>");
+        resp.getWriter().println("<a href= \"mainPage.html\">取消</a>");
         resp.getWriter().println("</html>");
     }
     public static Goods getGoods(int id){

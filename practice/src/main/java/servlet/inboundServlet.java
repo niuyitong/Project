@@ -49,7 +49,7 @@ public class inboundServlet extends HttpServlet {
                 writer.write("<h1>商品上架失败</h1>");
             }else{
                 writer.write("<h1>商品上架成功</h1>");
-                resp.sendRedirect("index.html");
+                resp.sendRedirect("mainPage.html");
             }
         }catch (SQLException e){
             e.printStackTrace();

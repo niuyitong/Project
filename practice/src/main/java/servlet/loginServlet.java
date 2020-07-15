@@ -53,7 +53,7 @@ public class loginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("user",user);
                 writer.write("<h1>登录成功</h1>");
-                resp.sendRedirect("index.html");
+                resp.sendRedirect("mainPage.html");
             }
         }catch(SQLException e){
             e.printStackTrace();

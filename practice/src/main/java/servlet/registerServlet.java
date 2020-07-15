@@ -40,7 +40,7 @@ public class registerServlet extends HttpServlet {
                 writer.write("<h1>注册失败</h1>");
             }else{
                 writer.write("<h1>注册成功</h1>");
-                resp.sendRedirect("login.html");
+                resp.sendRedirect("index.html");
             }
         }catch (SQLException e){
             e.printStackTrace();
