@@ -29,7 +29,7 @@ public class OSMonitorController {
     //树表中的id
     @FXML private TreeTableView<FileTreeNode> fileStat;
     @FXML private Text osType;//OS类型
-    @FXML private Text cpuArch;//
+    @FXML private Text cpuArch;
     @FXML private Text cpuCore;//cpu内核
     //定时器任务（每取一次就是一个任务）
     private TimerTask timerTask = null;
