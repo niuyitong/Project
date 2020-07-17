@@ -2,13 +2,7 @@ package entity;
 
 import lombok.Data;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- * User: GAOBO
- * Date: 2020-05-17
- * Time: 9:22
- */
+
 @Data
 public class Goods {
     private Integer id;
