@@ -2,9 +2,34 @@ package dao;
 
 import entiy.User;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class UserDaoTest {
+    @Test
+    public void findAllRecord(){
+        UserDao userDao = new UserDao();
+        Map<String,String[]> map = new HashMap<>();
+        //String[] strs = {"林"};
+        //map.put("address",strs);
+        String[] strs = {""};
+        map.put("address",strs);
+        int ret = userDao.findAllRecord(map);
+        System.out.println(ret);
+    }
+    @Test
+    public void findByPage(){
+        UserDao userDao = new UserDao();
+        Map<String,String[]> map = new HashMap<>();
+        String[] strs = {"林"};
+        map.put("address",strs);
+        List<User> userList =userDao.findByPage(0,10,map);
+        System.out.println(userList);
+    }
     @Test
     public void updateUser(){
         UserDao userDao = new UserDao();
